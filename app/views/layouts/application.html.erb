@@ -9,6 +9,11 @@
   </head>
 
   <body>
+    <%= ENV['BNET_ID'] %>
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    <% if current_user %>
+      <%= current_user.battletag %>
+    <%end%>
     <%= yield %>
   </body>
 </html>

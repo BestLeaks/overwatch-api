@@ -8,6 +8,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'webpacker'
 gem 'httparty'
+gem 'devise'
+gem 'omniauth-oauth2', '1.3.1'
+gem 'omniauth-bnet', '~> 1.1.1'
+
 group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
@@ -22,6 +26,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'shoulda-matchers', require: false
   gem 'valid_attribute'
+  gem 'dotenv-rails'
 end
 
 group :production do
