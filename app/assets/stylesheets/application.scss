@@ -10,12 +10,32 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require materialize
+ *= require material_icons
  *= require_tree .
  *= require_self
  */
+ // .search-input {
+ //   padding: 10px 15px;
+ //   height: 52px;
+ // }
 
 
 
+ @import "materialize";
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
+
+ .floating-box {
+   display: block;
+   width: 100px;
+ }
+ .block{
+   display: inline-block;
+ }
 .offensiveAssists:before{
   content: "Offensive";
+}
+#junkrat{
+  content: url("https://blzgdapipro-a.akamaihd.net/game/heroes/small/0x02E0000000000065.png")
 }

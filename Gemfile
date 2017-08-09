@@ -11,6 +11,9 @@ gem 'httparty'
 gem 'devise'
 gem 'omniauth-oauth2', '1.3.1'
 gem 'omniauth-bnet', '~> 1.1.1'
+gem 'material_icons'
+gem 'materialize-sass'
+gem 'font-awesome-sass'
 
 group :development do
   gem 'listen', '~> 3.0.5'
@@ -23,6 +26,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'launchy', require: false
   gem 'pry-rails'
+  gem 'pry-remote'
   gem 'rspec-rails', '~> 3.5'
   gem 'shoulda-matchers', require: false
   gem 'valid_attribute'

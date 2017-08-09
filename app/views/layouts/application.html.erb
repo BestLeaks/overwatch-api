@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>OverwatchApi</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Overwatch</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
+  <header>
+      <nav class="nav">
+        <div class="nav-wrapper">
+          <li class="brand-logo">&nbsp;&nbsp;&nbsp;<%= link_to "OverTrack", root_path %></li>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down compress">
+            <% if current_user %>
+              <li><%= current_user.battletag %></li>
+              <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+              <%else%>
+              <li><%=link_to "Sign In", new_user_session_path %></li>
+            <%end%>
+          </ul>
+          <ul class="side-nav" id="mobile-demo">
+          <% if current_user %>
+            <li><%= current_user.battletag %></li>
+            <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+            <%else%>
+            <li><%=link_to "Sign In", new_user_session_path %></li>
+          <%end%>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
   <body>
-    <%= ENV['BNET_ID'] %>
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-    <% if current_user %>
-      <%= current_user.battletag %>
-    <%end%>
+  <div class="container">
     <%= yield %>
+  </div>
   </body>
 </html>

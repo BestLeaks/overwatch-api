@@ -5,7 +5,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:bnet]
-
   validates :platform, inclusion: { in: VALID_PLATFORMS }, allow_nil: true
   validates :region, inclusion: { in: VALID_REGIONS }, allow_nil: true
   validates :email, presence: true
