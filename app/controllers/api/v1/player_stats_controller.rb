@@ -14,7 +14,6 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
     twitchID = data["twitchID"]
     twitchData = "https://twitch.tv/#{twitchID}"
     # binding.remote_pry
-    @twitch.update(addTwitch: twitchData)
     render json: {stats: @twitch, user: current_user}
   end
   def show

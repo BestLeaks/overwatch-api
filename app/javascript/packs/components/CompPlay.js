@@ -8,11 +8,16 @@ const CompPlay = props => {
   // let data2 = props.data.careerStats
   // var filter_allH = Object.keys(data2).filter((filt) => filt != "allHeroes")
   let Heroes = Object.keys(props.data.careerStats).map((key,index) => {
+    let name = key.replace(":","-")
+    let replaced_name = name.replace("ú","u")
+    let replaced = replaced_name.replace("ö",'o')
+    let upperCased = replaced.toUpperCase();
     if (key !== "allHeroes") {
     return(
       <Heros
         key={index}
-        name={key}
+        nameC = {upperCased}
+        name={replaced}
         data = {props.data.careerStats[key]}
         oGames= {OverallGames}
       />
@@ -22,8 +27,10 @@ const CompPlay = props => {
   return(
 
     <div>
-    <li>CompPlay</li>
+    <h4>Competitive Play</h4>
+    <div className="row">
     {Heroes}
+    </div>
     <CareerStats
       data={props.data.careerStats.allHeroes.assists}
     />

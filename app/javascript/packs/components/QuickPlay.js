@@ -8,11 +8,15 @@ let OverallGames = props.data.careerStats.allHeroes.game.gamesWon
 // var filter_allH = Object.keys(data2).filter((filt) => filt != "allHeroes")
 let Heroes = Object.keys(props.data.careerStats).map((key,index) => {
   let name = key.replace(":","-")
+  let replaced_name = name.replace("ú","u")
+  let replaced = replaced_name.replace("ö",'o')
+  let upperCased = replaced.toUpperCase();
   if (key !== "allHeroes") {
   return(
     <Heros
       key={index}
-      name={name}
+      nameC = {upperCased}
+      name={replaced}
       data = {props.data.careerStats[key]}
       oGames= {OverallGames}
     />
@@ -23,15 +27,16 @@ let Heroes = Object.keys(props.data.careerStats).map((key,index) => {
 // <p>{data.assist.selfHealing}</p>
 // console.log(props.data.careerStats)
 // console.log(filter_allH)
+// <CareerStats
+//   data={props.data.careerStats.allHeroes.assists}
+// />
   return(
     <div>
-      <li>QuickPlay</li>
+      <h4>Quick Play</h4>
     <div className="row">
       {Heroes}
     </div>
-    <CareerStats
-      data={props.data.careerStats.allHeroes.assists}
-    />
+
     </div>
   )
 }

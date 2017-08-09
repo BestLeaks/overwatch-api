@@ -14,3 +14,9 @@
 //= require jquery
 //= require materialize
 //= require_tree .
+
+$(document).ready(function() {
+  Materialize.updateTextFields();
+  $(".button-collapse").sideNav();
+  $('.parallax').parallax();
+});

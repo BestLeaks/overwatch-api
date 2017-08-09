@@ -5,7 +5,7 @@ import PlayerInfo from '../components/PlayerInfo';
 import QuickPlay from '../components/QuickPlay';
 import CompPlay from '../components/CompPlay';
 import TwitchForm from './TwitchForm';
-import {Button, Icon, Modal} from 'react-materialize'
+import {Button, Icon, Modal, Col, Preloader} from 'react-materialize'
 class PlayerProfile extends Component {
   constructor(props) {
     super(props)
@@ -16,6 +16,7 @@ class PlayerProfile extends Component {
       comp_play: false,
       battletag: '',
       name: 'empty',
+      loading: true
 
     }
     this.createTwitch = this.createTwitch.bind(this)
@@ -53,7 +54,7 @@ class PlayerProfile extends Component {
     fetch(`/api/v1/player_stats/${playerName}`,{credentials: "same-origin"})
     .then(response => response.json())
     .then(data => {
-      this.setState({player_info: data, fetch_status: true, name: playerName}, () => {
+      this.setState({player_info: data, fetch_status: true, name: playerName, loading: false}, () => {
       let battleTag;
       if (this.state.player_info.length !== 0 ){
         if (Object.keys(this.state.player_info.user).length !== 0){
@@ -67,6 +68,17 @@ class PlayerProfile extends Component {
 
 
   render(){
+    let load;
+    if(this.state.loading){
+      load =
+      <div className="center">
+        <Col s={12}>
+          <br/>
+          <br/>
+         <Preloader flashing size="big"/>
+        </Col>
+      </div>
+    }
     let player_info_data;
     if(this.state.fetch_status){
       player_info_data =
@@ -78,9 +90,9 @@ class PlayerProfile extends Component {
     let quick_comp_buttons;
     if(this.state.fetch_status){
       quick_comp_buttons =
-        <div>
-          <button onClick={this.quickPlay}> QuickPlay Stats </button>
-          <button onClick={this.compPlay}> CompPlay Stats </button>
+        <div className="right">
+          <button onClick={this.quickPlay} className="waves-effect waves-light btn"> Quick</button>&nbsp;&nbsp;
+          <button onClick={this.compPlay} className="waves-effect waves-light btn"> Competitive </button>
         </div>
     }
     let quick_play_data;
@@ -120,10 +132,17 @@ class PlayerProfile extends Component {
 
     return(
       <div>
-      {addTwitchButton}
-      
+      {load}
+      <br/>
+      <div>
+        {addTwitchButton}
+        <br/>
+        <br/>
+      </div>
       {player_info_data}
       {quick_comp_buttons}
+      <br/>
+      <br/>
       {quick_play_data}
       {comp_play_data}
       </div>

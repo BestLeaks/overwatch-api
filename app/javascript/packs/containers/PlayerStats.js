@@ -6,7 +6,7 @@ import PlayerInfo from '../components/PlayerInfo';
 import QuickPlay from '../components/QuickPlay';
 import CompPlay from '../components/CompPlay';
 import TwitchForm from './TwitchForm';
-import {Button, Icon, Modal} from 'react-materialize'
+import {Button, Icon, Modal, Col, Preloader} from 'react-materialize'
 
 const KEYS_TO_FILTERS = ['name']
 class PlayerStats extends Component {
@@ -21,7 +21,8 @@ class PlayerStats extends Component {
       fetch_status: true,
       show_stats: '',
       quick_play: true,
-      comp_play: false
+      comp_play: false,
+      loading: false
     }
 
     this.searchUpdated = this.searchUpdated.bind(this)
@@ -35,7 +36,7 @@ class PlayerStats extends Component {
     fetch('api/v1/player_stats', {credentials: "same-origin"})
     .then(response => response.json())
     .then(body => {
-      this.setState({ players_stats: body })
+      this.setState({ players_stats: body})
     })
 
   }
@@ -61,6 +62,7 @@ class PlayerStats extends Component {
   }
   searchFetch(event){
     event.preventDefault();
+    this.setState({loading: true})
     let replace = this.state.searchTerm
     let nameID = replace.replace("#","-");
     let payload = {
@@ -83,7 +85,7 @@ class PlayerStats extends Component {
       }
     })
     .then(response => response.json())
-    .then(body => {this.setState({player_info: body, name: nameID, fetch_status: true, searchTerm: '', show_stats: true})
+    .then(body => {this.setState({player_info: body, name: nameID, fetch_status: true, searchTerm: '', show_stats: true, loading: false})
     let battleTag;
     if (this.state.player_info.length !== 0 ){
       if (Object.keys(this.state.player_info.user).length !== 0){
@@ -96,7 +98,17 @@ class PlayerStats extends Component {
   }
 
   render(){
-
+    let load;
+    if(this.state.loading){
+      load =
+      <div className="center">
+        <Col s={12}>
+          <br/>
+          <br/>
+		     <Preloader flashing size="big"/>
+	      </Col>
+      </div>
+    }
     let invalid;
     if (this.state.fetch_status == false)
     {
@@ -125,9 +137,9 @@ class PlayerStats extends Component {
           twitchID={this.state.player_info.stats.addTwitch}
         />
       quick_comp_buttons =
-        <div>
-          <button onClick={this.quickPlay}> QuickPlay Stats </button>
-          <button onClick={this.compPlay}> CompPlay Stats </button>
+        <div className="right">
+          <button onClick={this.quickPlay} className="waves-effect waves-light btn"> Quick </button>&nbsp;&nbsp;
+          <button onClick={this.compPlay} className="waves-effect waves-light btn"> Competitive </button>
         </div>
     }
     let addTwitchButton;
@@ -175,10 +187,16 @@ class PlayerStats extends Component {
         <div className="center">
         <Button waves='light' onClick={this.searchFetch}> Search <Icon right>search</Icon></Button>
         </div>
-
-        {addTwitchButton}
+        <div>
+          {load}
+          {addTwitchButton}
+          <br/>
+          <br/>
+        </div>
         {player_info_data}
         {quick_comp_buttons}
+        <br/>
+        <br/>
         {quick_play_data}
         {comp_play_data}
 
