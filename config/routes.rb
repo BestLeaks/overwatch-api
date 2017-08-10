@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :player_stats, param: :name do
         post 'data', on: :collection
-        put 'update', on: :collection
+        put 'refresh', on: :collection
       end
     end
   end

@@ -18,7 +18,14 @@ let Heroes = Object.keys(props.data.careerStats).map((key,index) => {
       nameC = {upperCased}
       name={replaced}
       data = {props.data.careerStats[key]}
-      oGames= {OverallGames}
+      deaths={props.data.careerStats[key].deaths}
+      eliminations={props.data.careerStats[key].combat.eliminations}
+      kda={props.data.careerStats[key].combat.eliminationsPerLife}
+      objective={props.data.careerStats[key].combat.objectiveKills}
+      accuracy={props.data.careerStats[key].combat.weaponAccuracy}
+      won={props.data.careerStats[key].game.gamesWon}
+      time={props.data.careerStats[key].game.timePlayed}
+
     />
   )}
 })
@@ -32,7 +39,19 @@ let Heroes = Object.keys(props.data.careerStats).map((key,index) => {
 // />
   return(
     <div>
-      <h4>Quick Play</h4>
+    <h4 className="center"><b>Quick Play</b></h4>
+    <CareerStats
+      assist={props.data.careerStats.allHeroes.assists.healingDone}
+      most_elim_game={props.data.careerStats.allHeroes.best.eliminationsMostInGame}
+      solo_kill_game={props.data.careerStats.allHeroes.best.soloKillsMostInGame}
+      most_dmg_game={props.data.careerStats.allHeroes.best.allDamageDoneMostInGame}
+      all_dmg={props.data.careerStats.allHeroes.combat.allDamageDone}
+      all_elim={props.data.careerStats.allHeroes.combat.eliminations}
+      all_deaths={props.data.careerStats.allHeroes.deaths.deaths}
+
+    />
+    <br/>
+
     <div className="row">
       {Heroes}
     </div>

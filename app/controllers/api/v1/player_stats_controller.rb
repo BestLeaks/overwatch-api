@@ -14,7 +14,16 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
     twitchID = data["twitchID"]
     twitchData = "https://twitch.tv/#{twitchID}"
     # binding.remote_pry
+    @twitch.update(addTwitch: twitchData)
     render json: {stats: @twitch, user: current_user}
+  end
+  def refresh
+    data = JSON.parse(request.body.read)
+    profile = data["profile"]
+    response = HTTParty.get("https://ovrstat.com/v1/stats/pc/us/" + profile)
+    @update_stat = PlayerStat.find_by(name: profile)
+    @update_stat.update(player_data: response)
+    render json: {stats: @update_stat, user: current_user}
   end
   def show
     @stats = PlayerStat.find_by(name: params[:name])

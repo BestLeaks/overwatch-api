@@ -12,7 +12,7 @@ const PlayerInfo = props => {
   if (props.data.player_data.rating !== 0)
   {
     rating = <span><img src={props.data.player_data.ratingIcon}  height="38px" width="38px"/></span>
-    ratingNum = <p><b>{props.data.player_data.rating}</b></p>
+    ratingNum = <h6><b>{props.data.player_data.rating}</b></h6>
   }
 
   return(
@@ -22,7 +22,7 @@ const PlayerInfo = props => {
       		<Col s={12} m={12}>
           <div className="card horizontal">
             <div className="card-image">
-              <img src={props.data.player_data.icon} height="230px" width="230px"/>
+              <img src={props.data.player_data.icon} height="238px" width="238px"/>
             </div>
             <div className="card-stacked">
               <div className="card-content">
@@ -33,7 +33,7 @@ const PlayerInfo = props => {
                   </div>
               </div>
               <div className="card-action">
-                <a href={props.twitchID} ><i className="fa fa-twitch fa-lg"></i></a>
+                <a href={props.twitchID} ><i className="fa fa-twitch fa-2x"></i></a>
                 <div className="right"><h6>Total Games Won <b>{props.data.player_data.gamesWon}</b> &nbsp; LEVEL {level} </h6></div>
               </div>
             </div>
@@ -48,11 +48,12 @@ const PlayerInfo = props => {
         		title={props.data.name}
         		reveal={
               <div>
-                {rating}{ratingNum}
+                <p>{rating}{ratingNum}</p>
+                <div className="left"><a href={props.twitchID} ><i className="fa fa-twitch fa-2x"></i></a></div>
               </div>
                    }>
             <div>
-            <div><p>Games Won <b>{props.data.player_data.gamesWon}</b></p><div className="right"><a href={props.twitchID} ><i className="fa fa-twitch fa-lg"></i></a></div></div>
+            <div><p>Games Won <b>{props.data.player_data.gamesWon}</b></p></div>
             </div>
         </Card>
       </div>

@@ -18,16 +18,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user = User.new(provider: @auth['provider'], uid: @auth['uid'],
                     email: params[:email],
                     battletag: @auth['info']['battletag'],
-                    password: Devise.friendly_token[0,20],
-                    platform: params[:platform], region: params[:region])
+                    password: Devise.friendly_token[0,20])
 
     if user.save
       # user.migrate_session_records(session.id)
 
       session['devise.bnet_data'] = nil
       set_flash_message(:notice, :success, kind: "Battle.net")
-      # sign_in_and_redirect user, event: :authentication
-      redirect_to root_path
+      sign_in_and_redirect user, event: :authentication
+      # redirect_to root_path
     else
       flash[:alert] = 'Please provide an email address.'
       render :finish_signup

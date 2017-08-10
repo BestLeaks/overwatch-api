@@ -12,6 +12,8 @@ const CompPlay = props => {
     let replaced_name = name.replace("ú","u")
     let replaced = replaced_name.replace("ö",'o')
     let upperCased = replaced.toUpperCase();
+    let timeP = props.data.careerStats[key].game.timePlayed.replace("seconds","")
+    // let timePlayed = timeP.substring(0, timeP.indexOf('.'))
     if (key !== "allHeroes") {
     return(
       <Heros
@@ -20,6 +22,13 @@ const CompPlay = props => {
         name={replaced}
         data = {props.data.careerStats[key]}
         oGames= {OverallGames}
+        deaths={props.data.careerStats[key].deaths || 0}
+        eliminations={props.data.careerStats[key].combat.eliminations}
+        kda={props.data.careerStats[key].combat.eliminationsPerLife}
+        objective={props.data.careerStats[key].combat.objectiveKills}
+        accuracy={props.data.careerStats[key].combat.weaponAccuracy}
+        won={props.data.careerStats[key].game.gamesWon}
+        time={timeP}
       />
     )}
   })
@@ -27,13 +36,21 @@ const CompPlay = props => {
   return(
 
     <div>
-    <h4>Competitive Play</h4>
+    <h4 className="center"><b>Competitive Play</b></h4>
+    <CareerStats
+      assist={props.data.careerStats.allHeroes.assists.healingDone}
+      most_elim_game={props.data.careerStats.allHeroes.best.eliminationsMostInGame}
+      solo_kill_game={props.data.careerStats.allHeroes.best.soloKillsMostInGame}
+      most_dmg_game={props.data.careerStats.allHeroes.best.allDamageDoneMostInGame}
+      all_dmg={props.data.careerStats.allHeroes.combat.allDamageDone}
+      all_elim={props.data.careerStats.allHeroes.combat.eliminations}
+      all_deaths={props.data.careerStats.allHeroes.deaths.deaths}
+    />
+    <br/>
     <div className="row">
     {Heroes}
     </div>
-    <CareerStats
-      data={props.data.careerStats.allHeroes.assists}
-    />
+
     </div>
   )
 }

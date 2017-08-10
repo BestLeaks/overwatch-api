@@ -28,6 +28,7 @@ class PlayerStats extends Component {
     this.searchUpdated = this.searchUpdated.bind(this)
     this.createTwitch = this.createTwitch.bind(this)
     this.searchFetch = this.searchFetch.bind(this)
+    this.updateFetch = this.updateFetch.bind(this)
     this.quickPlay = this.quickPlay.bind(this)
     this.compPlay = this.compPlay.bind(this)
   }
@@ -53,6 +54,21 @@ class PlayerStats extends Component {
   }
   createTwitch(payload){
     fetch(`/api/v1/player_stats/${this.state.name}`,{
+      method: 'PUT',
+      body: JSON.stringify(payload),
+      credentials: "same-origin"
+    })
+    .then(response => response.json())
+    .then(body => {this.setState({player_info: body, formShow: false})})
+  }
+  updateFetch(event){
+    event.preventDefault();
+    let nameID = this.state.name
+    // this.setState({loading: true})
+    let payload = {
+      profile: nameID
+    }
+    fetch(`/api/v1/player_stats/refresh`,{
       method: 'PUT',
       body: JSON.stringify(payload),
       credentials: "same-origin"
@@ -136,28 +152,71 @@ class PlayerStats extends Component {
           data={this.state.player_info.stats}
           twitchID={this.state.player_info.stats.addTwitch}
         />
-      quick_comp_buttons =
-        <div className="right">
-          <button onClick={this.quickPlay} className="waves-effect waves-light btn"> Quick </button>&nbsp;&nbsp;
-          <button onClick={this.compPlay} className="waves-effect waves-light btn"> Competitive </button>
+        quick_comp_buttons =
+        <div>
+          <div className="hide-on-small-only">
+            <div className="left">
+              <button onClick={this.updateFetch} className="waves-effect waves-light btn"> Refresh </button>
+            </div>
+            <div className="right">
+              <button onClick={this.quickPlay} className="waves-effect waves-light btn"> Quick</button>&nbsp;&nbsp;
+              <button onClick={this.compPlay} className="waves-effect waves-light btn"> Competitive </button>
+            </div>
+          </div>
+          <div className="hide-on-med-and-up">
+            <div className="center">
+              <button onClick={this.updateFetch} className="waves-effect waves-light btn"> Refresh </button>
+            </div>
+            <br/>
+            <div className="center">
+              <button onClick={this.quickPlay} className="waves-effect waves-light btn"> Quick</button>&nbsp;&nbsp;
+              <button onClick={this.compPlay} className="waves-effect waves-light btn"> Competitive </button>
+            </div>
+          </div>
         </div>
     }
     let addTwitchButton;
     if(this.state.name == this.state.battletag){
       if(this.state.player_info.stats.addTwitch === ''){
         addTwitchButton =
-        <Modal
-          header='Add Twitch.tv ID'
-          trigger={<Button waves='light' className="right">Add Twitch <Icon right>settings</Icon></Button>}>
-          <TwitchForm createTwitch = {this.createTwitch}/>
-        </Modal>
+        <div>
+          <div className="hide-on-small-only">
+            <Modal
+              header='Add Twitch.tv ID'
+              trigger={<Button waves='light' className="right">Add Twitch <Icon right>settings</Icon></Button>}>
+              <TwitchForm createTwitch = {this.createTwitch}/>
+            </Modal>
+          </div>
+          <div className="hide-on-med-and-up">
+          <div className="center">
+            <Modal
+              header='Add Twitch.tv ID'
+              trigger={<Button waves='light' className="center">Add Twitch <Icon right>settings</Icon></Button>}>
+              <TwitchForm createTwitch = {this.createTwitch}/>
+            </Modal>
+          </div>
+          </div>
+        </div>
       }else{
         addTwitchButton =
-        <Modal
-          header='Update Twitch.tv ID'
-          trigger={<Button waves='light' className="right">Update Twitch <Icon right>settings</Icon></Button>}>
-          <TwitchForm createTwitch = {this.createTwitch}/>
-        </Modal>
+        <div>
+          <div className="hide-on-small-only">
+            <Modal
+              header='Add Twitch.tv ID'
+              trigger={<Button waves='light' className="right">Update Twitch <Icon right>settings</Icon></Button>}>
+              <TwitchForm createTwitch = {this.createTwitch}/>
+            </Modal>
+          </div>
+          <div className="hide-on-med-and-up">
+          <div className="center">
+            <Modal
+              header='Add Twitch.tv ID'
+              trigger={<Button waves='light' className="center">Update Twitch <Icon right>settings</Icon></Button>}>
+              <TwitchForm createTwitch = {this.createTwitch}/>
+            </Modal>
+          </div>
+          </div>
+        </div>
       }
     }
 
@@ -177,6 +236,11 @@ class PlayerStats extends Component {
     }
     return(
       <div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <p>{invalid}</p>
           <div className="wrapper card">
         <SearchInput className="search-input" onChange={this.searchUpdated} placeholder="  Enter BattleTag"/>
@@ -187,6 +251,7 @@ class PlayerStats extends Component {
         <div className="center">
         <Button waves='light' onClick={this.searchFetch}> Search <Icon right>search</Icon></Button>
         </div>
+        <br/>
         <div>
           {load}
           {addTwitchButton}
