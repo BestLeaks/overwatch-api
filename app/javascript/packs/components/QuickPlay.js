@@ -12,6 +12,7 @@ let Heroes = Object.keys(props.data.careerStats).map((key,index) => {
   let replaced = replaced_name.replace("ö",'o')
   let upperCased = replaced.toUpperCase();
   if (key !== "allHeroes") {
+    if (Object.keys(props.data.careerStats[key]).length === 7){
   return(
     <Heros
       key={index}
@@ -28,6 +29,7 @@ let Heroes = Object.keys(props.data.careerStats).map((key,index) => {
 
     />
   )}
+}
 })
 
 

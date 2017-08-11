@@ -155,12 +155,10 @@ class PlayerStats extends Component {
         quick_comp_buttons =
         <div>
           <div className="hide-on-small-only">
-            <div className="left">
-              <button onClick={this.updateFetch} className="waves-effect waves-light btn"> Refresh </button>
-            </div>
-            <div className="right">
-              <button onClick={this.quickPlay} className="waves-effect waves-light btn"> Quick</button>&nbsp;&nbsp;
-              <button onClick={this.compPlay} className="waves-effect waves-light btn"> Competitive </button>
+            <div className="center">
+              <button onClick={this.updateFetch} className="waves-effect waves-light btn"> Refresh </button>&nbsp;&nbsp;
+              <button onClick={this.compPlay} className="waves-effect waves-light btn"> Competitive </button>&nbsp;&nbsp;
+              <button onClick={this.quickPlay} className="waves-effect waves-light btn"> Quick</button>
             </div>
           </div>
           <div className="hide-on-med-and-up">
@@ -234,39 +232,87 @@ class PlayerStats extends Component {
         data={this.state.player_info.stats.player_data.competitiveStats}
       />
     }
+
     return(
-      <div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <p>{invalid}</p>
-          <div className="wrapper card">
-        <SearchInput className="search-input" onChange={this.searchUpdated} placeholder="  Enter BattleTag"/>
-        <div className="search-results">
-          {user_names}
+  <div>
+    <div className="hide-on-med-and-up">
+      <div className="mobile-overlay">
+        <div id="mobile-background">
+          <img src="https://s3.us-east-2.amazonaws.com/overwatch-api/mobile-background.jpg" />
         </div>
-          </div>
-        <div className="center">
-        <Button waves='light' onClick={this.searchFetch}> Search <Icon right>search</Icon></Button>
-        </div>
-        <br/>
-        <div>
-          {load}
-          {addTwitchButton}
-          <br/>
-          <br/>
-        </div>
-        {player_info_data}
-        {quick_comp_buttons}
-        <br/>
-        <br/>
-        {quick_play_data}
-        {comp_play_data}
-
-
       </div>
+      <div>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <p>{invalid}</p>
+            <div className="wrapper card">
+          <SearchInput className="search-input" onChange={this.searchUpdated} placeholder="  Enter BattleTag"/>
+          <div className="search-results">
+            {user_names}
+          </div>
+            </div>
+          <div className="center">
+          <Button waves='light' onClick={this.searchFetch}> Search <Icon right>search</Icon></Button>
+          </div>
+          <br/>
+          <div>
+            {load}
+            {addTwitchButton}
+            <br/>
+            <br/>
+          </div>
+          {player_info_data}
+          {quick_comp_buttons}
+          <br/>
+          <br/>
+          {quick_play_data}
+          {comp_play_data}
+      </div>
+    </div>
+
+    <div className="hide-on-small-only">
+    <div className="video">
+    <video id="video-background" loop autoPlay>
+      <source src="https://overwatch-a.akamaihd.net/video/pages/home/header-82b9abce067992beedde6d103b6241d616a7ee97cc0d4f3126277098c2e4b09004325f25c6a245656096bd333c880b0032e2cbdbed9d2514220e20718482e95b.mp4" type="video/mp4"/>
+      <source src="https://overwatch-a.akamaihd.net/video/pages/home/header-82b9abce067992beedde6d103b6241d616a7ee97cc0d4f3126277098c2e4b09004325f25c6a245656096bd333c880b0032e2cbdbed9d2514220e20718482e95b.mp4" type="video/ogg"/>
+      Your browser does not support the video tag.
+    </video>
+    </div>
+      <div className="position">
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <p>{invalid}</p>
+            <div className="wrapper card">
+          <SearchInput className="search-input" onChange={this.searchUpdated} placeholder="  Enter BattleTag"/>
+          <div className="search-results">
+            {user_names}
+          </div>
+            </div>
+          <div className="center">
+          <Button waves='light' onClick={this.searchFetch}> Search <Icon right>search</Icon></Button>
+          </div>
+          <br/>
+          <div>
+            {load}
+            {addTwitchButton}
+            <br/>
+            <br/>
+          </div>
+          {player_info_data}
+          {quick_comp_buttons}
+          <br/>
+          <br/>
+          {quick_play_data}
+          {comp_play_data}
+      </div>
+    </div>
+  </div>
     )
   }
 }

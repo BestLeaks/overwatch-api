@@ -15,6 +15,7 @@ const CompPlay = props => {
     let timeP = props.data.careerStats[key].game.timePlayed.replace("seconds","")
     // let timePlayed = timeP.substring(0, timeP.indexOf('.'))
     if (key !== "allHeroes") {
+      if (Object.keys(props.data.careerStats[key]).length > 3){
     return(
       <Heros
         key={index}
@@ -23,14 +24,15 @@ const CompPlay = props => {
         data = {props.data.careerStats[key]}
         oGames= {OverallGames}
         deaths={props.data.careerStats[key].deaths || 0}
-        eliminations={props.data.careerStats[key].combat.eliminations}
-        kda={props.data.careerStats[key].combat.eliminationsPerLife}
-        objective={props.data.careerStats[key].combat.objectiveKills}
-        accuracy={props.data.careerStats[key].combat.weaponAccuracy}
+        eliminations={props.data.careerStats[key].combat.eliminations || 0}
+        kda={props.data.careerStats[key].combat.eliminationsPerLife || 0}
+        objective={props.data.careerStats[key].combat.objectiveKills || 0}
+        accuracy={props.data.careerStats[key].combat.weaponAccuracy|| 0}
         won={props.data.careerStats[key].game.gamesWon}
         time={timeP}
       />
     )}
+  }
   })
 
   return(

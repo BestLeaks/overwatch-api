@@ -107,12 +107,11 @@ class PlayerProfile extends Component {
       quick_comp_buttons =
       <div>
         <div className="hide-on-small-only">
-          <div className="left">
-            <button onClick={this.updateFetch} className="waves-effect waves-light btn"> Refresh </button>
-          </div>
-          <div className="right">
-            <button onClick={this.quickPlay} className="waves-effect waves-light btn"> Quick</button>&nbsp;&nbsp;
-            <button onClick={this.compPlay} className="waves-effect waves-light btn"> Competitive </button>
+          <div className="center">
+            <button onClick={this.updateFetch} className="waves-effect waves-light btn"> Refresh </button>&nbsp;&nbsp;
+            <button onClick={this.compPlay} className="waves-effect waves-light btn"> Competitive </button>&nbsp;&nbsp;
+            <button onClick={this.quickPlay} className="waves-effect waves-light btn"> Quick</button>
+
           </div>
         </div>
         <div className="hide-on-med-and-up">
@@ -189,21 +188,49 @@ class PlayerProfile extends Component {
     }
 
     return(
-      <div>
-      {load}
-      <br/>
-      <div>
-        {addTwitchButton}
+    <div>
+      <div className="hide-on-med-and-up">
+        <div className="mobile-overlay">
+          <div id="mobile-background">
+            <img src="https://s3.us-east-2.amazonaws.com/overwatch-api/mobile-background.jpg" />
+          </div>
+        </div>
+        {load}
+        <br/>
+        <div>
+          {addTwitchButton}
+          <br/>
+          <br/>
+        </div>
+        {player_info_data}
+        {quick_comp_buttons}
         <br/>
         <br/>
+        {quick_play_data}
+        {comp_play_data}
       </div>
-      {player_info_data}
-      {quick_comp_buttons}
-      <br/>
-      <br/>
-      {quick_play_data}
-      {comp_play_data}
+
+      <div className="hide-on-small-only">
+        <div className="video">
+          <div id="video-background">
+            <img src="https://s3.us-east-2.amazonaws.com/overwatch-api/hanamura.jpg" />
+          </div>
+        </div>
+        {load}
+        <br/>
+        <div>
+          {addTwitchButton}
+          <br/>
+          <br/>
+        </div>
+        {player_info_data}
+        {quick_comp_buttons}
+        <br/>
+        <br/>
+        {quick_play_data}
+        {comp_play_data}
       </div>
+    </div>
     )
   }
 }

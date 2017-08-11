@@ -33,6 +33,45 @@
    width: 100px;
 
  }
+ #video-background {
+/*  making the video fullscreen  */
+  position: fixed;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  opacity: .8;
+  z-index: -2;
+
+}
+#mobile-background{
+  position: fixed;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: 500px;
+  height: auto;
+  opacity: .8;
+  z-index: -2;
+}
+.mobile-overlay{
+  position: absolute;
+  top: -50;
+}
+.video{
+  position: absolute;
+  top: -50;
+}
+// .overlay{
+//
+//   z-index: -1
+// }
+ .position{
+   position: absolute;
+   width: 70%;
+ }
+
  .pointer{
    cursor: pointer;
  }

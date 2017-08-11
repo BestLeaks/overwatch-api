@@ -2,14 +2,16 @@ import React from 'react'
 import {Row, Col, CardPanel, Card, CardTitle} from 'react-materialize'
 
 const Heros = props => {
-  let stats = Object.keys(props.data).map((key) => {
+  let stats = Object.keys(props.data).filter(item => {
+    return(
+      item !== 'miscellaneous' && item !== 'average'
+    )
+  }).map((key) => {
     let upK = key.toUpperCase();
-      if (key !== "miscellaneous") {
-        if (key !== 'average'){
         //  return(
         let stats2 = Object.keys(props.data[key]).filter(item => {
           return(
-            item !== 'selfHealing'
+            item !== 'selfHealing' && item !== 'turretDestroyed'
           )
         }).map((key1,index) =>{
           let capK = key1[0].toUpperCase() + key1.slice(1)
@@ -30,8 +32,8 @@ const Heros = props => {
           </div>
         );
         // )
-      }
-    }
+
+
   })
   // let deaths = Object.keys(props.deaths)[0].map((key,index) =>{
   //   return(
@@ -46,6 +48,12 @@ const Heros = props => {
   }else{
     deaths = props.deaths[Object.keys(props.deaths)[0]]
   }
+  // let eliminations
+  // if(props.eliminations[Object.keys(props.eliminations)['eliminations']] == null){
+  //   eliminations = 0
+  // }else{
+  //   eliminations = props.eliminations[Object.keys(props.eliminations)['eliminations']]
+  // }
 
   // <Card className='small' header={<CardTitle reveal image={'https://s3.us-east-2.amazonaws.com/overwatch-api/ana.png'} waves='light'/>}
   //     title={props.name}
@@ -93,7 +101,7 @@ const Heros = props => {
           </div>
         </div>
         <div className="card-action">
-          <a href={`https://playoverwatch.com/en-us/heroes/${props.name}/`}>Hero Info</a>
+          <a className="blue-text text-accent-3"href={`https://playoverwatch.com/en-us/heroes/${props.name}/`}>Hero Info</a>
         </div>
         </div>
         <div className="card-reveal">

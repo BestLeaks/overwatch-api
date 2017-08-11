@@ -19,26 +19,26 @@ const PlayerInfo = props => {
     <div>
       <div className="hide-on-small-only">
         <Row>
-      		<Col s={12} m={12}>
+      		<div className="col s8 offset-s2">
           <div className="card horizontal">
             <div className="card-image">
-              <img src={props.data.player_data.icon} height="238px" width="238px"/>
+              <img src={props.data.player_data.icon} height="250px" width="250px"/>
             </div>
             <div className="card-stacked">
               <div className="card-content">
-                <h5><b>{props.data.name}</b></h5>
+                <h5>{props.data.name}</h5>
                   <div className="block">
                     <div className="floating-box">{rating}</div>
                     <div className="floating-box"><b>{ratingNum}</b></div>
                   </div>
               </div>
               <div className="card-action">
-                <a href={props.twitchID} ><i className="fa fa-twitch fa-2x"></i></a>
+                <a href={props.twitchID} ><i className="fa fa-twitch fa-lg"></i></a>
                 <div className="right"><h6>Total Games Won <b>{props.data.player_data.gamesWon}</b> &nbsp; LEVEL {level} </h6></div>
               </div>
             </div>
           </div>
-      		</Col>
+      		</div>
         </Row>
       </div>
 
@@ -48,7 +48,7 @@ const PlayerInfo = props => {
         		title={props.data.name}
         		reveal={
               <div>
-                <p>{rating}{ratingNum}</p>
+                <div>{rating}{ratingNum}</div>
                 <div className="left"><a href={props.twitchID} ><i className="fa fa-twitch fa-2x"></i></a></div>
               </div>
                    }>
