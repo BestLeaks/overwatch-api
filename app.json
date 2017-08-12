@@ -1,0 +1,54 @@
+{
+  "name": "OverTrack",
+  "description": "Overwatch Statistics",
+  "success_url": "/",
+  "keywords": [
+    "ruby on rails",
+    "react"
+  ],
+  "repository": "https://github.com/oscar6654/overwatch-api",
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  },
+  "env": {
+    "RAILS_ENV": "production",
+    "RACK_ENV": "production", 
+    "SECRET_TOKEN": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+    "BNET_APP_ID": {
+      "description": "BNET_APP_ID",
+      "value": "",
+      "required": true
+    },
+      "BNET_APP_SECRET": {
+      "description": "BNET_APP_SECRET",
+      "value": "",
+      "required": true
+    },
+      "BNET_APP_HOST": {
+      "description": "YOUR_APP_NAME.herokuapp.com",
+      "value": "",
+      "required": true
+    }
+  },
+  "image": "heroku/ruby",
+  "addons": [
+    {
+      "plan": "heroku-postgresql",
+      "options": {
+        "version": "9.5"
+      }
+    },
+    "sendgrid:starter"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
