@@ -3,6 +3,12 @@
   
 </p>
 
+## About this Application:
+
+[OverTrack](https://overtrack-api.herokuapp.com)
+
+Players that play Overwatch (made by Blizzard Entertainment) can search their Battle.net ID. The app fetches the Overwatch API, saves all the data to the database and displays the player statistics, including rating, level, and hero stats, on the main page which is rendered in React. Players can then analyze their individual performance and compare it with their friends or search for other players.
+
 ## Deploy to Heroku
 
 ```
@@ -43,11 +49,6 @@ edit .env file with your keys
 rails s
 ```
 
-## About this Application:
-
-[OverTrack](https://overtrack-api.herokuapp.com)
-
-Players that play Overwatch (made by Blizzard Entertainment) can search their Battle.net ID. The app fetches the Overwatch API, saves all the data to the database and displays the player statistics, including rating, level, and hero stats, on the main page which is rendered in React. Players can then analyze their individual performance and compare it with their friends or search for other players.
 
 ## Development:
 
