@@ -3,8 +3,24 @@
   
 </p>
 
-  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+## Deploy to Heroku
 
+```
+Go to dev.battle.net and sign up for an account. Register and create an application.
+
+Put Callback URL as https://YOUR_HEROKU_APP_URL/users/auth/bnet/callback
+
+Put Website URL as https://YOUR_HEROKU_APP_URL/
+
+Then you will get your:
+
+BNET_APP_ID & BNET_APP_SECRET
+
+Needed for Heroku Deploy
+
+```
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 
 ## Installation
