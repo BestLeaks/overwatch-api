@@ -9,7 +9,7 @@
   </head>
   <header>
       <div class="navbar-fixed">
-        <nav class="nav">
+        <nav>
           <div class="nav-wrapper">
             <li class="brand-logo">&nbsp;&nbsp;&nbsp;<%= link_to "OverTrack", root_path %></li>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -21,17 +21,19 @@
                 <li><%=link_to "Sign In", new_user_session_path %></li>
               <%end%>
             </ul>
-            <ul class="side-nav" id="mobile-demo">
-            <% if current_user %>
-              <li><%= link_to current_user.battletag, root_path %></li>
-              <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-              <%else%>
-              <li><%=link_to "Sign In", new_user_session_path %></li>
-            <%end%>
-          </ul>
+          </div>
+          </nav>
         </div>
-    </nav>
-  </div>
+        <ul class="side-nav" id="mobile-demo">
+        <% if current_user %>
+          <li><%= link_to current_user.battletag, root_path %></li>
+          <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+          <%else%>
+          <li><%=link_to "Sign In", new_user_session_path %></li>
+        <%end%>
+        </ul>
+
+
   </header>
 
   <body>

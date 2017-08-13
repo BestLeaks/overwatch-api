@@ -42,7 +42,7 @@
   width: auto;
   height: auto;
   opacity: .8;
-  z-index: -2;
+  z-index: -1000;
 
 }
 #mobile-background{
@@ -53,8 +53,9 @@
   width: 500px;
   height: auto;
   opacity: .8;
-  z-index: -2;
+  z-index: -1000;
 }
+// #sidenav-overlay { z-index: 1; }
 .mobile-overlay{
   position: absolute;
   top: -50;
