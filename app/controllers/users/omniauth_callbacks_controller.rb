@@ -3,10 +3,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     auth = request.env['omniauth.auth']
     # binding.pry
     user = User.where(provider: auth.provider, uid: auth.uid).first
-    return sign_in_and_redirect(user, event: :authentication) if user
-
-    session['devise.bnet_data'] = auth
-    redirect_to users_finish_signup_path
+    if user
+      set_flash_message(:notice, :success, kind: "Battle.net")
+      sign_in_and_redirect(user, event: :authentication)
+    # return sign_in_and_redirect(user, event: :authentication) if user
+    else
+      session['devise.bnet_data'] = auth
+      redirect_to users_finish_signup_path
+    end
   end
 
   def finish_signup
